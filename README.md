@@ -15,7 +15,7 @@ g++ -03 cache_locality_matrix.cpp -o cache_perf_test.exe -lpthread -lbenchmark
 
 
 
-In the Performance version, hoth the result vector and matrix B are accessed linearly. Prefetcher: Your CPU hardware detects this linear pattern and pulls the next blocks of memory into the L1 cache before the loop even reaches them. SIMD (Vectorization): Because the data is contiguous, the compiler's -O3 optimization can use AVX instructions to calculate 8 multiplications in a single clock cycle.
+In the Performance version, both the result vector and matrix B are accessed linearly, so the prefetcher pulls the next blocks of memory into the cache before the loop even reaches them. Because the data is contiguous, the compiler's -O3 optimization can use AVX instructions (SIMD vectorization) to calculate 8 multiplications in a single clock cycle.
 
 
 We achive ~5.1x times faster calculations just by changing the for loop index. 
